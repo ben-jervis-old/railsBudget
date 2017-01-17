@@ -16,4 +16,16 @@ class Expense < ApplicationRecord
             return 0
         end
     end
+    
+    def convert_to_weekly
+        self.convert_to_fortnightly / 2
+    end
+    
+    def convert_to_monthly
+        self.convert_to_fortnightly * 26 / 12 
+    end
+    
+    def convert_to_yearly
+        self.convert_to_fortnightly * 26
+    end
 end

@@ -1,5 +1,6 @@
 class ExpensesController < ApplicationController
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
+  @frequencies = ["Weekly", "Fortnightly", "Monthly", "Yearly"]
 
   # GET /expenses
   # GET /expenses.json
@@ -11,6 +12,7 @@ class ExpensesController < ApplicationController
   # GET /expenses/1
   # GET /expenses/1.json
   def show
+    @frequencies = ["Weekly", "Fortnightly", "Monthly", "Yearly"]
   end
 
   # GET /expenses/new
@@ -21,6 +23,7 @@ class ExpensesController < ApplicationController
 
   # GET /expenses/1/edit
   def edit
+    @frequencies = ["Weekly", "Fortnightly", "Monthly", "Yearly"]
   end
 
   # POST /expenses
