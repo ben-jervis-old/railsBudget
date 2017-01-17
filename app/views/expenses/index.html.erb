@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Budget</h1>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th class='text-right'>Amount</th>
+      <th>Frequency</th>
+      <th class='text-right'>Per Pay</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @expenses.each do |expense| %>
+      <tr>
+        <td><%= expense.title %></td>
+        <td class='text-right'><%= number_to_currency(expense.amount) %></td>
+        <td><%= expense.frequency %></td>
+        <td class='text-right'><%= number_to_currency(expense.convert_to_fortnightly) %></td>
+        <td><%= link_to '', expense, class: 'glyphicon glyphicon-eye-open' %></td>
+        <td><%= link_to '', edit_expense_path(expense), class: 'glyphicon glyphicon-pencil' %></td>
+        <td><%= link_to '', expense, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-trash' %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>Total</td>
+      <td colspan="2"></td>
+      <td class='text-right'><%= number_to_currency(@sum_expenses) %></td>
+      <td colspan="3"></td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Expense', new_expense_path %>
