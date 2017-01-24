@@ -1,29 +1,30 @@
 class ExpensesController < ApplicationController
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
-  @frequencies = ["Weekly", "Fortnightly", "Monthly", "Yearly"]
-
+  
+  include ExpensesHelper
+  
   # GET /expenses
   # GET /expenses.json
   def index
-    @expenses = Expense.all
+    @expenses = Expense.all.sort { |a, b| b.convert_to_fortnightly <=> a.convert_to_fortnightly }
     @sum_expenses = sum_fortnightly_amounts(@expenses)
   end
 
   # GET /expenses/1
   # GET /expenses/1.json
   def show
-    @frequencies = ["Weekly", "Fortnightly", "Monthly", "Yearly"]
+    @frequencies = freq_list
   end
 
   # GET /expenses/new
   def new
     @expense = Expense.new
-    @frequencies = ["Weekly", "Fortnightly", "Monthly", "Yearly"]
+    @frequencies = freq_list
   end
 
   # GET /expenses/1/edit
   def edit
-    @frequencies = ["Weekly", "Fortnightly", "Monthly", "Yearly"]
+    @frequencies = freq_list
   end
 
   # POST /expenses
@@ -47,7 +48,7 @@ class ExpensesController < ApplicationController
   def update
     respond_to do |format|
       if @expense.update(expense_params)
-        format.html { redirect_to @expense, notice: 'Expense was successfully updated.' }
+        format.html { redirect_to root_url, notice: 'Expense was successfully updated.' }
         format.json { render :show, status: :ok, location: @expense }
       else
         format.html { render :edit }
