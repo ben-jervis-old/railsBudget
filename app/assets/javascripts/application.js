@@ -13,4 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-sprockets
 //= require_tree .
+
+// var showRowButton = document.querySelector('#show-new-row');
+
+// $(document).ready(function() {
+//     $("#show-new-row").click(function(e) {
+//         $("#new-expense-row").css('visibility', 'visible');
+//     });
+// });

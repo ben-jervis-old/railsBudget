@@ -1,39 +1,66 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Budget</h1>
-
-<table class='table'>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th class='text-right'>Amount</th>
-      <th>Frequency</th>
-      <th class='text-right'>Per Pay</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @expenses.each do |expense| %>
+<div class="container" style='max-width: 750px'>
+  
+  <h1>Budget</h1>
+  
+  <table class='table' style='table-layout: fixed;'>
+    <thead>
       <tr>
-        <td><%= expense.title %></td>
-        <td class='text-right'><%= number_to_currency(expense.amount) %></td>
-        <td><%= expense.frequency %></td>
-        <td class='text-right'><%= number_to_currency(expense.convert_to_fortnightly) %></td>
-        <td><%= link_to '', expense, class: 'glyphicon glyphicon-eye-open' %></td>
-        <td><%= link_to '', edit_expense_path(expense), class: 'glyphicon glyphicon-pencil' %></td>
-        <td><%= link_to '', expense, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-trash' %></td>
+        <th>Title</th>
+        <th class='text-right'>Amount</th>
+        <th>Frequency</th>
+        <th class='text-right'>Per Pay</th>
+        <th class='text-center'>Actions</th>
       </tr>
-    <% end %>
-    <tr>
-      <td>Total</td>
-      <td colspan="2"></td>
-      <td class='text-right'><%= number_to_currency(@sum_expenses) %></td>
-      <td colspan="3"></td>
-    </tr>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Expense', new_expense_path %>
+    </thead>
+  
+    <tbody>
+      <% @expenses.each do |expense| %>
+        <tr>
+          <td><%= expense.title %></td>
+          <td class='text-right'><%= number_to_currency(expense.amount) %></td>
+          <td><%= expense.frequency %></td>
+          <td class='text-right'><%= number_to_currency(expense.convert_to_fortnightly) %></td>
+          <td class='text-center'><%= link_to '', expense, class: 'glyphicon glyphicon-eye-open' %>
+          <%= link_to '', edit_expense_path(expense), class: 'glyphicon glyphicon-pencil' %>
+          <%= link_to '', expense, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-trash' %></td>
+        </tr>
+      <% end %>
+      <div >
+        <tr class="collapse" id="new-expense-row">
+          <%= form_for(@new_expense, remote: true) do |f| %>
+            <td><%= f.text_field :title, class: 'form-control', placeholder: 'Title'%></td>
+            <td>
+              <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <%= f.text_field :amount, class: 'form-control text-right', placeholder: 'Amount' %>
+              </div>
+            </td>
+            <td><%= f.select :frequency, freq_list, {}, { class: 'form-control' } %></td>
+            <td></td>
+            <td><%= f.submit 'Save', class: 'btn btn-primary btn-block' %></td>
+          <% end %>
+        </tr>
+      </div>
+      <tr>
+        <td>Total</td>
+        <td colspan="2"></td>
+        <td class='text-right'><%= number_to_currency(@sum_expenses) %></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <br>
+  
+  <div id="notice"><%= notice %></div>
+  
+   <br>
+  
+  <%= link_to new_expense_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span> New Expense
+  <% end %>
+  
+  <button class="btn btn-primary" id='show-new-row' data-toggle='collapse' data-target='#new-expense-row'>
+    <span class="glyphicon glyphicon-plus"></span>
+  </button>
+</div>
