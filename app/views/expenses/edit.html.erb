@@ -1,6 +1,9 @@
-<h1>Editing Expense</h1>
+<div class="container">
+    <h1>Editing Expense</h1>
 
-<%= render 'form', expense: @expense %>
+    <%= render 'form', expense: @expense %>
+    
+    <%= link_to 'Show', @expense %> |
+    <%= link_to 'Back', expenses_path %>
+</div>
 
-<%= link_to 'Show', @expense %> |
-<%= link_to 'Back', expenses_path %>
