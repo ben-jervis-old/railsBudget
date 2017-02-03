@@ -13,7 +13,7 @@ class ExpensesController < ApplicationController
     
     respond_to do |format|
       format.html
-      format.csv { send_data @expenselist.to_csv }
+      format.csv { send_data @expenselist.to_csv, filename: "ExpenseList#{Time.now.in_time_zone("Sydney").strftime("%H%M%S_%d%m%Y")}.csv" }
     end
   end
     
