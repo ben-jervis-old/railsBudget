@@ -1,0 +1,49 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="newExpenseModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">New Expense</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for(@new_expense) do |f| %>
+          <% if @new_expense.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@new_expense.errors.count, "error") %> prohibited this expense from being saved:</h2>
+        
+              <ul>
+              <% @new_expense.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+        
+          <div class="field">
+            <%= f.label :title %>
+            <%= f.text_field :title, class: 'form-control', tabindex: 1 %>
+          </div>
+          
+          <div class="field">
+            <%= f.label :amount %>
+            <div class="input-group">
+              <span class="input-group-addon">$</span>
+              <%= f.text_field :amount, class: 'form-control text-right', tabindex: 2 %>
+            </div>
+          </div>
+        
+          <div class="field">
+            <%= f.label :frequency %>
+            <%= f.select :frequency, @frequencies, {}, { class: 'form-control', tabindex: 3 } %>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" tabindex=5>Close</button>
+        <!--<div class="actions">-->
+            <%= f.submit 'Save', class: 'btn btn-primary', tabindex: 4 %>
+          <!--</div>-->
+      </div>
+      <% end %>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
