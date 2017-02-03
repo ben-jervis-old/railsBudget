@@ -16,3 +16,9 @@ div.container {
         padding: 10px 15px;
     }
 }
+
+@media (min-width: 768px) {
+    div.modal-dialog {
+        max-width: 450px;
+    }
+}

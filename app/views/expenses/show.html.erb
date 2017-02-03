@@ -1,21 +1,21 @@
 <div class="container">
-<p id="notice"><%= notice %></p>
-
-<h1><%= @expense.title %></h1>
-
-<h3>
-  <%= "#{number_to_currency(@expense.amount)} per #{de_adverb(@expense.frequency)}" %>
-</h3><br>
-
-<% @frequencies.each do |freq| %>
- <h5>
-    <%= number_to_currency(@expense.send("convert_to_#{freq.downcase}")) %> per <%= de_adverb(freq) %>
-  </h5>
-<% end %>
-<br>
-  <small>Created: <%= @expense.created_at.in_time_zone("Sydney").strftime("%I:%M %p on %d/%m/%Y") %><br>
-Last Updated: <%= @expense.updated_at.in_time_zone("Sydney").strftime("%I:%M %p on %d/%m/%Y") %><br><br></small>
-
-<%= link_to 'Edit', edit_expense_path(@expense) %> |
-<%= link_to 'Back', expenses_path %>
+  <p id="notice"><%= notice %></p>
+  
+  <h1><%= @expense.title %></h1>
+  
+  <h3>
+    <%= "#{number_to_currency(@expense.amount)} per #{de_adverb(@expense.frequency)}" %>
+  </h3><br>
+  
+  <% @frequencies.each do |freq| %>
+   <h5>
+      <%= number_to_currency(@expense.send("convert_to_#{freq.downcase}")) %> per <%= de_adverb(freq) %>
+    </h5>
+  <% end %>
+  <br>
+    <small>Created: <%= @expense.created_at.in_time_zone("Sydney").strftime("%I:%M %p on %d/%m/%Y") %><br>
+  Last Updated: <%= @expense.updated_at.in_time_zone("Sydney").strftime("%I:%M %p on %d/%m/%Y") %><br><br></small>
+  
+  <%= link_to 'Edit', edit_expense_path(@expense) %> |
+  <%= link_to 'Back', expenses_path %>
 </div>

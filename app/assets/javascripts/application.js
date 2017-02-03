@@ -16,10 +16,9 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-// var showRowButton = document.querySelector('#show-new-row');
-
-// $(document).ready(function() {
-//     $("#show-new-row").click(function(e) {
-//         $("#new-expense-row").css('visibility', 'visible');
-//     });
-// });
+$(document).ready(function() {
+    $('#newExpenseModal').on('shown.bs.modal', function() {
+        $('#expense_title').focus();
+        console.log("Shown After");
+    });
+});

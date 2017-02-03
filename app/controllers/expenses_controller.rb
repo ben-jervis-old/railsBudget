@@ -9,11 +9,11 @@ class ExpensesController < ApplicationController
     @expenses = Expense.all.sort { |a, b| b.convert_to_fortnightly <=> a.convert_to_fortnightly }
     @new_expense = Expense.new
     @sum_expenses = sum_fortnightly_amounts(@expenses)
-    @expenselist = Expense.order(:title)
+    @frequencies = freq_list
     
     respond_to do |format|
       format.html
-      format.csv { send_data @expenselist.to_csv, filename: "ExpenseList#{Time.now.in_time_zone("Sydney").strftime("%H%M%S_%d%m%Y")}.csv" }
+      format.csv { send_data @expenses.to_csv, filename: "ExpenseList#{Time.now.in_time_zone("Sydney").strftime("%H%M%S_%d%m%Y")}.csv" }
     end
   end
     

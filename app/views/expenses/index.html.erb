@@ -1,8 +1,10 @@
 <div class="container">
   
+  <%= render partial: 'modals/new_modal' %>
+  
   <h1>Budget</h1>
   
-  <table class='table'>
+  <table class='table table-hover'>
     <thead>
       <tr>
         <th>Title</th>
@@ -15,6 +17,7 @@
   
     <tbody>
       <% @expenses.each do |expense| %>
+        <%= link_to(expense) do %>
         <tr>
           <td><%= expense.title %></td>
           <td class='hidden-xs text-right'><%= number_to_currency(expense.amount) %></td>
@@ -24,6 +27,7 @@
           <%= link_to '', edit_expense_path(expense), class: 'glyphicon glyphicon-pencil' %>
           <%= link_to '', expense, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-trash' %></td>
         </tr>
+        <% end %>
       <% end %>
       <tr>
         <td>Total</td>
@@ -40,9 +44,13 @@
   
    <br>
   
-  <%= link_to new_expense_path, class: 'btn btn-primary btn-mobile-block' do %>
+  <!--<%= link_to new_expense_path, class: 'btn btn-primary btn-mobile-block' do %>-->
+  <!--  <span class="glyphicon glyphicon-plus"></span> New Expense-->
+  <!--<% end %>-->
+  
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newExpenseModal">
     <span class="glyphicon glyphicon-plus"></span> New Expense
-  <% end %>
+  </button>
   
   <%= link_to expenses_path(format: "csv"), class: 'btn btn-primary btn-mobile-block' do %>
     <span class="glyphicon glyphicon-export"></span> Export (CSV)

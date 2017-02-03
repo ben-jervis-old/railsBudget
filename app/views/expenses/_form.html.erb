@@ -15,20 +15,18 @@
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control' %>
   </div>
-
-  <div class="form-inline">
-    <div class="field" style='display: inline-block; width: 50%'>
-      <%= f.label :amount %>
-      <div class="input-group">
-        <span class="input-group-addon">$</span>
-        <%= f.text_field :amount, class: 'form-control text-right', placeholder: 'Amount' %>
-      </div>
-    </div>
   
-    <div class="field"  style='display: inline-block'>
-      <%= f.label :frequency %>
-      <%= f.select :frequency, @frequencies, {}, { class: 'form-control' } %>
+  <div class="field">
+    <%= f.label :amount %>
+    <div class="input-group">
+      <span class="input-group-addon">$</span>
+      <%= f.text_field :amount, class: 'form-control text-right' %>
     </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :frequency %>
+    <%= f.select :frequency, @frequencies, {}, { class: 'form-control' } %>
   </div>
 
   <div class="actions">
