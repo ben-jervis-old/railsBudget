@@ -2,7 +2,7 @@
   
   <h1>Budget</h1>
   
-  <table class='table' style='table-layout: fixed;'>
+  <table class='table'>
     <thead>
       <tr>
         <th>Title</th>
@@ -25,22 +25,6 @@
           <%= link_to '', expense, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-trash' %></td>
         </tr>
       <% end %>
-      <div >
-        <tr class="collapse" id="new-expense-row">
-          <%= form_for(@new_expense, remote: true) do |f| %>
-            <td><%= f.text_field :title, class: 'form-control', placeholder: 'Title'%></td>
-            <td>
-              <div class="input-group">
-                <span class="input-group-addon">$</span>
-                <%= f.text_field :amount, class: 'form-control text-right', placeholder: 'Amount' %>
-              </div>
-            </td>
-            <td><%= f.select :frequency, freq_list, {}, { class: 'form-control' } %></td>
-            <td></td>
-            <td><%= f.submit 'Save', class: 'btn btn-primary btn-block' %></td>
-          <% end %>
-        </tr>
-      </div>
       <tr>
         <td>Total</td>
         <td class="hidden-xs" colspan="2"></td>
@@ -56,17 +40,11 @@
   
    <br>
   
-  <%= link_to new_expense_path, class: 'btn btn-primary' do %>
+  <%= link_to new_expense_path, class: 'btn btn-primary btn-mobile-block' do %>
     <span class="glyphicon glyphicon-plus"></span> New Expense
   <% end %>
   
-  <button class="hidden-xs btn btn-primary" id='show-new-row' data-toggle='collapse' data-target='#new-expense-row'>
-    <span class="glyphicon glyphicon-plus"></span>
-  </button>
-  
-  <br><br>
-  
-  <%= link_to expenses_path(format: "csv"), class: 'btn btn-primary' do %>
+  <%= link_to expenses_path(format: "csv"), class: 'btn btn-primary btn-mobile-block' do %>
     <span class="glyphicon glyphicon-export"></span> Export (CSV)
   <% end %>
 </div>
