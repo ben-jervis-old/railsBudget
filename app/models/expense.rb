@@ -31,9 +31,10 @@ class Expense < ApplicationRecord
     
     def self.to_csv(options = {})
         CSV.generate(options) do |csv|
-            csv << column_names
+            columns_used = %w(title amount frequency)
+            csv << columns_used
             all.each do |item|
-                csv << item.attributes.values_at(*column_names)
+                csv << item.attributes.values_at(*columns_used)
             end
         end
     end
