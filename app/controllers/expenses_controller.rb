@@ -9,7 +9,14 @@ class ExpensesController < ApplicationController
     @expenses = Expense.all.sort { |a, b| b.convert_to_fortnightly <=> a.convert_to_fortnightly }
     @new_expense = Expense.new
     @sum_expenses = sum_fortnightly_amounts(@expenses)
+    @expenselist = Expense.order(:title)
+    
+    respond_to do |format|
+      format.html
+      format.csv { send_data @expenselist.to_csv }
+    end
   end
+    
 
   # GET /expenses/1
   # GET /expenses/1.json

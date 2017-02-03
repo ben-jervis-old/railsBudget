@@ -28,4 +28,13 @@ class Expense < ApplicationRecord
     def convert_to_yearly
         self.convert_to_fortnightly * 26
     end
+    
+    def self.to_csv(options = {})
+        CSV.generate(options) do |csv|
+            csv << column_names
+            all.each do |item|
+                csv << item.attributes.values_at(*column_names)
+            end
+        end
+    end
 end

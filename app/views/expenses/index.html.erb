@@ -63,4 +63,10 @@
   <button class="hidden-xs btn btn-primary" id='show-new-row' data-toggle='collapse' data-target='#new-expense-row'>
     <span class="glyphicon glyphicon-plus"></span>
   </button>
+  
+  <br><br>
+  
+  <%= link_to expenses_path(format: "csv"), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-export"></span> Export (CSV)
+  <% end %>
 </div>
