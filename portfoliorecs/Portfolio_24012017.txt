@@ -1,0 +1,10 @@
+Portfolio Valuation Date: Tuesday, 24 January 2017
+
+Account: 2814677 : 
+CODE         NAME                    QUANTITY     PRICE (c)    VALUE ($)
+GXY          GALAXY RESOURCES FPO        3200          63.5     2032.000
+TLS          TELSTRA CORPORATION.         100         511.0      511.000
+TPM          TPG TELECOM LIMITED F        256         693.0     1774.080
+CSL          CSL LIMITED FPO [CSL]         21       11255.0     2363.550
+TLS          TELSTRA CORPORATION.         180         511.0      919.800
+Total Value:	$7600.43
